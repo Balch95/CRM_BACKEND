@@ -17,6 +17,19 @@ router.get('/all', function (req, res) {
     });
 });
 
+router.get('/:id', function(req, res){
+    clientList.single(req.params.id, function(err, client){
+        if(err){
+            res.status(404);
+            res.json({
+                error: "Client don't exist"
+            });
+        } else {
+            res.json(client)
+        }
+    })
+})
+
 router.post('/add', function (req, res) {
     clientList.add(req.body, function (err, client) {
         if (err) {

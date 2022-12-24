@@ -10,6 +10,16 @@ function clientList(cb) {
     });
 };
 
+function clientById(id, cb){
+    Client.findById(id).populate("action").exec(function(err, client){
+        if(err){
+            cb(err)
+        } else {
+            cb(null, client)
+        }
+    })
+}
+
 function addClient(data, cb) {
     let newClient = new Client(data);
     newClient.save(function (err, client) {
@@ -43,6 +53,7 @@ function updateClient(id, data, cb){
 
 module.exports = {
     list: clientList,
+    single: clientById,
     add: addClient,
     remove: removeClient,
     update: updateClient
