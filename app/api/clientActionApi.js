@@ -31,4 +31,19 @@ router.delete("/remove/:clientId", function (req, res) {
     })
 })
 
+router.put("/update/:clientActionId", function(req, res){
+    clientAction.update(req.params.clientActionId, req.body, function(err, clientAction){
+        if(err){
+            res.status(404);
+            res.json({
+                error: "Action  don't update"
+            })
+        } else {
+            res.json({
+                message: "Action update"
+            })
+        }
+    })
+})
+
 module.exports = router;

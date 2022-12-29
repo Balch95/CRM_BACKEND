@@ -39,7 +39,18 @@ function removeClientAction(clientId, clientActionId, cb) {
     })
 }
 
+function updateClientAction(clientActionId, data, cb){
+    ClientAction.updateOne({_id: clientActionId}, data, function(err, clientAction){
+        if(err){
+            cb(err);
+        } else{
+            cb(null, clientAction);
+        }
+    })
+}
+
 module.exports = {
     add: addClientAction,
-    remove: removeClientAction
+    remove: removeClientAction,
+    update: updateClientAction
 }
