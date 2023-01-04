@@ -4,7 +4,9 @@ const router = express.Router();
 
 const clientList = require('../controllers/clients.controller');
 
-router.get('/all', function (req, res) {
+const auth = require('../middlewares/auth')
+
+router.get('/all', auth, function (req, res) {
     clientList.list(function (err, client) {
         if (err) {
             res.status(404);
