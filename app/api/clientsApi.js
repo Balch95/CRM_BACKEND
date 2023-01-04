@@ -4,9 +4,9 @@ const router = express.Router();
 
 const clientList = require('../controllers/clients.controller');
 
-const auth = require('../middlewares/auth')
+const authUser = require('../middlewares/authUser')
 
-router.get('/all', auth, function (req, res) {
+router.get('/all', function (req, res) {
     clientList.list(function (err, client) {
         if (err) {
             res.status(404);
@@ -32,15 +32,17 @@ router.get('/:id', function(req, res){
     })
 })
 
-router.post('/add', function (req, res) {
+router.post('/add', authUser, function (req, res) {
     clientList.add(req.body, function (err, client) {
         if (err) {
             res.status(404);
             res.json({
                 error: "Client not add"
             })
-        } else {
+        } else if(client){
             res.json(client)
+        } else {
+            res.status(201);
         }
     });
 });

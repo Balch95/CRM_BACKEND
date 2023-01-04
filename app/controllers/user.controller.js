@@ -30,8 +30,8 @@ function userLogin(data, cb) {
             if (err) {
                 cb(err);
             } if (logged) {
-                const token = user.generateAuthToken();
-                cb(null, token);
+                const data = { token :user.generateAuthToken(), permision: user.permision}
+                cb(null, data);
             } else {
                 cb(null, null);
             }
