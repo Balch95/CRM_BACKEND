@@ -39,9 +39,9 @@ router.post('/add', authUser, function (req, res) {
             res.json({
                 error: "Client not add"
             })
-        } else if(client){
+        }else if(client){
             res.json(client)
-        } else {
+        }else{
             res.status(201);
         }
     });

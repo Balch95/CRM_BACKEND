@@ -27,7 +27,7 @@ router.post('/login', function(req, res){
                 error: "User not logged"
             })
         } else if(data){
-            res.json({success: true, jwt: data.token, userPermision: data.permision})
+            res.json({success: true, jwt: data.token, userPermission: data.permission})
         } else {
             res.status(201)
             res.json({success: false, message:"Username or password do not match"})

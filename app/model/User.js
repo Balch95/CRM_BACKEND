@@ -17,7 +17,7 @@ const schemaUser = mongoose.Schema({
     },
     email:{type: String, require: true},
     phone:{type: Number, require: true},
-    permision: {type: Array, require: true}
+    permission: {type: Array, require: true}
 })
 
 schemaUser.pre('save', function(next){

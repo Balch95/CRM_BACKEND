@@ -12,11 +12,12 @@ module.exports= function(req, res, next) {
        
 
         User.findById(req.user._id).exec(function(err, user){
-            if(user.permision.includes("user")){
+            if(user.permission.includes("user")){
                 console.log("user")
                 next();
             }
             else{
+                res.status(201)
                 res.json({message: "Access denied"})
             }
         })
