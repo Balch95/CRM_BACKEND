@@ -39,7 +39,18 @@ function userLogin(data, cb) {
     })
 }
 
+function userAll(cb) {
+    User.find().select("-password").exec(function (err, user) {
+        if (err) {
+            cb(err);
+        } else {
+            cb(null, user);
+        }
+    });
+};
+
 module.exports = {
     add: userAdd,
-    login: userLogin
+    login: userLogin,
+    all: userAll
 }

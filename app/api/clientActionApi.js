@@ -4,7 +4,10 @@ const router = express.Router();
 
 const clientAction = require('../controllers/clientAction.controller');
 
-router.post("/add/:clientId", function (req, res) {
+const authLevel1 = require('../middlewares/authLevel1')
+const authLevel2 = require('../middlewares/authLevel2')
+
+router.post("/add/:clientId",authLevel1, function (req, res) {
     clientAction.add(req.params.clientId, req.body, function (err, data) {
         if (err) {
             res.status(404)
@@ -18,7 +21,7 @@ router.post("/add/:clientId", function (req, res) {
 })
 
 
-router.delete("/remove/:clientId", function (req, res) {
+router.delete("/remove/:clientId",authLevel2, function (req, res) {
     clientAction.remove(req.params.clientId, req.body.clientActionId, function (err, data) {
         if (err) {
             res.status(404)
@@ -31,7 +34,7 @@ router.delete("/remove/:clientId", function (req, res) {
     })
 })
 
-router.put("/update/:clientActionId", function(req, res){
+router.put("/update/:clientActionId",authLevel1, function(req, res){
     clientAction.update(req.params.clientActionId, req.body, function(err, clientAction){
         if(err){
             res.status(404);

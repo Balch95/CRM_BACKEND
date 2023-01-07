@@ -4,9 +4,11 @@ const router = express.Router();
 
 const clientList = require('../controllers/clients.controller');
 
-const authUser = require('../middlewares/authUser')
+const authLevel1 = require('../middlewares/authLevel1')
+const authLevel2 = require('../middlewares/authLevel2')
 
-router.get('/all', function (req, res) {
+
+router.get('/all',authLevel1, function (req, res) {
     clientList.list(function (err, client) {
         if (err) {
             res.status(404);
@@ -19,7 +21,7 @@ router.get('/all', function (req, res) {
     });
 });
 
-router.get('/:id', function(req, res){
+router.get('/:id',authLevel1, function(req, res){
     clientList.single(req.params.id, function(err, client){
         if(err){
             res.status(404);
@@ -32,7 +34,7 @@ router.get('/:id', function(req, res){
     })
 })
 
-router.post('/add', authUser, function (req, res) {
+router.post('/add', authLevel2, function (req, res) {
     clientList.add(req.body, function (err, client) {
         if (err) {
             res.status(404);
@@ -47,7 +49,7 @@ router.post('/add', authUser, function (req, res) {
     });
 });
 
-router.delete('/remove/:id', function(req, res){
+router.delete('/remove/:id',authLevel2, function(req, res){
     clientList.remove(req.params.id, function(err, client){
         if (err) {
             res.status(404);
@@ -60,7 +62,7 @@ router.delete('/remove/:id', function(req, res){
     });
 });
 
-router.put('/update/:id', function(req,res){
+router.put('/update/:id',authLevel2, function(req,res){
     clientList.update(req.params.id, req.body, function(err, client){
         if(err){
             res.status(404);

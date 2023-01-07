@@ -13,10 +13,11 @@ const schemaUser = mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        immutable: true
     },
     email:{type: String, require: true},
-    phone:{type: Number, require: true},
+    phone:{type: String, require: true},
     permission: {type: Array, require: true}
 })
 
