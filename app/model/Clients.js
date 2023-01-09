@@ -11,6 +11,8 @@ const schemaClient = new mongoose.Schema({
         zipCode: { type: String, required: true },
         city: { type: String, required: true },
     },
+    phone: { type: String, require: true },
+    email: { type: String, require: true },
     nip: { type: Number, required: true },
     action: [{
         type: mongoose.Schema.Types.ObjectId,
