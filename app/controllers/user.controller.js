@@ -49,8 +49,30 @@ function userAll(cb) {
     });
 };
 
+function userUpdate(id, data, cb){
+    User.updateOne({_id: id}, data, function(err, client){
+        if(err){
+            cb(err);
+        } else{
+            cb(null, client);
+        }
+    })
+}
+
+function userRemove (id, cb){
+    User.deleteOne({_id: id}, function(err, client){
+        if(err){
+            cb(err);
+        } else {
+            cb(null, client)
+        }
+    });
+}
+
 module.exports = {
     add: userAdd,
     login: userLogin,
-    all: userAll
+    all: userAll,
+    update: userUpdate,
+    remove: userRemove
 }

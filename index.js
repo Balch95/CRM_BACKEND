@@ -4,14 +4,14 @@ const express = require('express')
 const cors = require('cors')
 
 const app = express()
-const port = 5050
+const port = process.env.APP_PORT
 
 const clientsApi = require('./app/api/clientsApi')
 const clientActionApi = require('./app/api/clientActionApi')
 const user = require('./app/api/userApi')
 
 const corsOptions = {
-	origin: 'http://localhost:3000',
+	origin: process.env.CORS_ORIGIN,
 	optionsSuccessStatus: 200
 };
 
