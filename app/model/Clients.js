@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://0.0.0.0:49153/crm_database', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://lwapp:lwapp@cluster0.0jckmmw.mongodb.net/crm_app', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const schemaClient = new mongoose.Schema({
     name: { type: String, require: true },

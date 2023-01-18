@@ -3,7 +3,7 @@ const uniqueValidator = require('mongoose-unique-validator');
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 
-mongoose.connect('mongodb://0.0.0.0:49153/crm_database', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://lwapp:lwapp@cluster0.0jckmmw.mongodb.net/crm_app', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const schemaUser = mongoose.Schema({
     username: {
